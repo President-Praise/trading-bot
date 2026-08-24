@@ -1,0 +1,19 @@
+[Unit]
+Description=Trading Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/Trading_bot
+ExecStart=/usr/bin/python3 main.py
+Restart=always
+RestartSec=10
+
+EnvironmentFile=/etc/trading-bot.env
+
+StandardOutput=append:/opt/Trading_bot/logs/bot.log
+StandardError=append:/opt/Trading_bot/logs/bot.log
+
+[Install]
+WantedBy=multi-user.target
